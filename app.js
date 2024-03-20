@@ -1,5 +1,3 @@
-/* This code snippet is setting up a Node.js server using Express framework. Here's a breakdown of what
-the code is doing: */
 require("dotenv").config();
 const mongoose = require("mongoose");
 const morgan = require('morgan')
