@@ -2,27 +2,23 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const teacherSchema = new Schema(
+const courseSchema = new Schema(
     {
-        name: String,
-        teacherCode: String,
-        email: {
+        name: {
             type: String,
             required: true
         },
-        password: {
-            type: String,
-            required: true
-        },
+        courseCode: String,
+        description: String,
         departmentId: {
             type: Schema.Types.ObjectId,
             ref: 'Department',
             required: true
         },
-        designation: String
+        totalCredits: Number
     },
     { timestamps: true }
 );
 
 
-module.exports = mongoose.model("Teacher", teacherSchema);
+module.exports = mongoose.model("Course", courseSchema);

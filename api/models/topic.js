@@ -2,20 +2,21 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const chapterSchema = new Schema(
+const topicSchema = new Schema(
     {
         name: {
             type: String,
             required: true
         },
         description: String,
-        subjectId: {
+        courseId: {
             type: Schema.Types.ObjectId,
-            ref: 'Subject'
-        },
+            ref: 'Course',
+            required: true
+        }
     },
     { timestamps: true }
 );
 
 
-module.exports = mongoose.model("Chapter", chapterSchema);
+module.exports = mongoose.model("Topic", topicSchema);

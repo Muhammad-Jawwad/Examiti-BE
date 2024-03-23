@@ -1,41 +1,46 @@
 const { validationResult } = require("express-validator");
-const Organization = require("../models/organization");
-const Class = require("../models/class");
+const Department = require("../models/department");
+const Course = require("../models/course");
 
 module.exports = {
-    createClass: async (req, res) => {
+
+    //#region : COURSES CRUD
+
+    createCourse: async (req, res) => {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).json({
-                    status: 400,
+                    code: 400,
                     message: "Validation error",
                     errors: errors.array()
                 });
             }
 
-            const organizationId = req.body.organizationId;
-            const isExistOrganization = await Organization.findById(organizationId);
-            if(!isExistOrganization){
+            const departmentId = req.body.departmentId;
+            const isExistDepartment = await Department.findById(departmentId);
+            if (!isExistDepartment) {
                 return res.status(404).json({
                     code: 404,
-                    message: "Organizations not found"
+                    message: "Department not found"
                 });
             }
 
             //creating a new org
-            const newClass = new Class({
+            const newCourse = new Course({
                 name: req.body.name,
-                academicYear: req.body.academicYear,
-                organizationId: req.body.organizationId
+                courseCode: req.body.courseCode,
+                departmentIdId: req.body.departmentIdId,
+                description: req.body.description,
+                totalCredits: req.body.totalCredits,
             });
-            const ClassDetails = await newClass.save();
+            const CourseDetails = await newCourse.save();
 
             // Returning success message
             res.status(201).json({
-                status: 201,
-                message: "New Class created successfully",
-                data: ClassDetails,
+                code: 201,
+                message: "New Course created successfully",
+                data: CourseDetails,
             });
         } catch (error) {
             console.log(error);
@@ -47,19 +52,19 @@ module.exports = {
         }
     },
 
-    getAllClasses: async (req, res) => {
+    getAllCourses: async (req, res) => {
         try {
-            const classList = await Class.find().sort({ _id: -1 });
-            if (classList.length === 0) {
+            const courseList = await Course.find().sort({ _id: -1 });
+            if (courseList.length === 0) {
                 return res.status(404).json({
                     code: 404,
-                    message: "No Class found"
+                    message: "No Course found"
                 });
             }
             res.json({
                 code: 200,
-                message: "Class retrieved successfully",
-                data: classList
+                message: "Courses retrieved successfully",
+                data: courseList
             });
         } catch (error) {
             console.log(error);
@@ -71,26 +76,27 @@ module.exports = {
         }
     },
 
-    getClassById: async (req, res) => {
+    getCourseById: async (req, res) => {
         try {
             const id = req.params.id; //To seprate the id from the parameter
             if (!id) {
                 return res.status(400).json({
+                    code: 400,
                     message: "id is required",
                 });
             }
 
-            const foundClass = await Class.findById(id);
-            if (!foundClass) {
+            const foundCourse = await Course.findById(id);
+            if (!foundCourse) {
                 return res.status(404).json({
                     code: 404,
-                    message: "Class not found",
+                    message: "Course not found",
                 });
             }
             res.json({
                 code: 200,
-                message: "Class retrieved successfully",
-                data: foundClass
+                message: "Course retrieved successfully",
+                data: foundCourse
             });
         } catch (error) {
             res.status(500).json({
@@ -101,12 +107,12 @@ module.exports = {
         }
     },
 
-    updateClass: async (req, res) => {
+    updateCourse: async (req, res) => {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).json({
-                    status: 400,
+                    code: 400,
                     message: "Validation error",
                     errors: errors.array()
                 });
@@ -119,39 +125,39 @@ module.exports = {
                 });
             }
 
-            const organizationId = req.body.organizationId;
-            if (organizationId){
-                const isExistOrganization = await Organization.findById(organizationId);
-                if (!isExistOrganization) {
+            const departmentId = req.body.departmentId;
+            if (departmentId) {
+                const isExistDepartment = await Department.findById(departmentId);
+                if (!isExistDepartment) {
                     return res.status(404).json({
                         code: 404,
-                        message: "Organizations not found"
+                        message: "Department not found"
                     });
                 }
             }
 
             const updateFields = {};
-            const fieldsToUpdate = ['name', 'academicYear', 'organizationId'];
+            const fieldsToUpdate = ['name', 'courseCode', 'description', 'departmentId','totalCredits'];
             fieldsToUpdate.forEach(field => {
                 if (req.body[field]) {
                     updateFields[field] = req.body[field];
                 }
             });
 
-            const updatedClass = await Class.findByIdAndUpdate(id, updateFields, { new: true });
+            const updatedCourse = await Course.findByIdAndUpdate(id, updateFields, { new: true });
 
-            if (!updatedClass) {
+            if (!updatedCourse) {
                 return res.status(404).json({
                     code: 404,
-                    message: "Class not found",
+                    message: "Course not found",
                 });
             }
 
-            // Return the updated Class
+            // Return the updated Course
             res.status(200).json({
                 code: 200,
-                message: "Class updated successfully",
-                data: updatedClass,
+                message: "Course updated successfully",
+                data: updatedCourse,
             });
         } catch (error) {
             console.log(error);
@@ -163,21 +169,21 @@ module.exports = {
         }
     },
 
-    deleteClass: async (req, res) => {
+    deleteCourse: async (req, res) => {
         try {
             const id = req.params.id;
 
-            const deletedClass = await Class.findByIdAndDelete(id);
-            if (!deletedClass) {
+            const deletedCourse = await Course.findByIdAndDelete(id);
+            if (!deletedCourse) {
                 return res.status(404).json({
                     code: 404,
-                    message: "Class not found",
+                    message: "Course not found",
                 });
             }
 
             res.status(200).json({
                 code: 200,
-                message: "Class deleted successfully"
+                message: "Course deleted successfully"
             });
         } catch (error) {
             console.error(error);
@@ -189,29 +195,43 @@ module.exports = {
         }
     },
 
-    getClassesByOrganization: async (req, res) => {
+    //#endregion
+
+    //#region : OTHER APIs
+
+    coursesByDepartmentId: async (req, res) => {
         try {
-            const organizationId = req.params.id;
-            if (!organizationId) {
+            const id = req.params.departmentId; //To seprate the id from the parameter
+            if (!id) {
                 return res.status(400).json({
-                    message: "organizationId is required in params",
+                    code: 400,
+                    message: "id is required",
                 });
             }
 
-            const classesByOrganizationList = await Class.find({organizationId}).sort({ _id: -1 });
-            if (classesByOrganizationList.length === 0) {
+            const isExistDepartment = await Department.findById(id)
+            if (!isExistDepartment) {
                 return res.status(404).json({
                     code: 404,
-                    message: "No Class by Organization found"
+                    message: "Department not found"
+                });
+            }
+
+            const foundCourseByDepartment = await Course.find({
+                departmentId: id
+            });
+            if (foundCourseByDepartment.length === 0) {
+                return res.status(404).json({
+                    code: 404,
+                    message: "Course not found",
                 });
             }
             res.json({
                 code: 200,
-                message: "Class by Organization retrieved successfully",
-                data: classesByOrganizationList
+                message: "Course by Department Id retrieved successfully",
+                data: foundCourseByDepartment
             });
         } catch (error) {
-            console.log(error);
             res.status(500).json({
                 code: 500,
                 error: error.name,
@@ -219,5 +239,7 @@ module.exports = {
             });
         }
     },
+
+    //#endregion
 
 }

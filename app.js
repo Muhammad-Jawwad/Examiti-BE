@@ -4,7 +4,12 @@ const morgan = require('morgan')
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-// const userRoutes = require("./api/routes/user");
+const universityRoutes = require("./api/routes/university");
+const departmentRoutes = require("./api/routes/department");
+const courseRoutes = require("./api/routes/course");
+const topicRoutes = require("./api/routes/topic");
+const adminRoutes = require("./api/routes/admin");
+const teacherRoutes = require("./api/routes/teacher");
 const app = express();
 
 app.use(express.json());
@@ -26,7 +31,12 @@ app.use((req, res, next) => {
 });
 
 // Routes
-// app.use(userRoutes);
+app.use('/university', universityRoutes);
+app.use('/department', departmentRoutes);
+app.use('/course', courseRoutes);
+app.use('/topic', topicRoutes);
+app.use('/admin', adminRoutes);
+app.use('/teacher', teacherRoutes);
 
 // setting mongoose connection and starting server
 mongoose.set("strictQuery", false);

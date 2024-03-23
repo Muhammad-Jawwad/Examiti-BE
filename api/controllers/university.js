@@ -1,31 +1,33 @@
 const { validationResult } = require("express-validator");
-const Organization = require("../models/organization");
+const University = require("../models/university");
 
 module.exports = {
-    createOrganization: async (req, res) => {
+    createUniversity: async (req, res) => {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).json({
-                    status: 400,
+                    code: 400,
                     message: "Validation error",
                     errors: errors.array()
                 });
             }
 
             //creating a new org
-            const newOrganization = new Organization({
+            const newUniversity = new University({
                 name: req.body.name,
-                description: req.body.description,
-                location: req.body.location
+                website: req.body.website,
+                location: req.body.location,
+                establishedYear: req.body.establishedYear,
+                contactEmail: req.body.contactEmail,
             });
-            const OrganizationDetails = await newOrganization.save();
+            const UniversityDetails = await newUniversity.save();
 
             // Returning success message
             res.status(201).json({
-                status: 201,
-                message: "New Organization created successfully",
-                data: OrganizationDetails,
+                code: 201,
+                message: "New University created successfully",
+                data: UniversityDetails,
             });
         } catch (error) {
             console.log(error);
@@ -36,20 +38,20 @@ module.exports = {
             });
         }
     },
-    
-    getOrganization: async (req, res) => {
+
+    getUniversity: async (req, res) => {
         try {
-            const organizationList = await Organization.find().sort({ _id: -1 });
-            if (organizationList.length === 0) {
+            const universityList = await University.find().sort({ _id: -1 });
+            if (universityList.length === 0) {
                 return res.status(404).json({
                     code: 404,
-                    message: "No Organizations found"
+                    message: "No universities found"
                 });
             }
             res.json({
                 code: 200,
-                message: "Organizations retrieved successfully",
-                data: organizationList
+                message: "universities retrieved successfully",
+                data: universityList
             });
         } catch (error) {
             console.log(error);
@@ -61,26 +63,27 @@ module.exports = {
         }
     },
 
-    getOrganizationById: async (req, res) => {
+    getUniversityById: async (req, res) => {
         try {
             const id = req.params.id; //To seprate the id from the parameter
             if (!id) {
                 return res.status(400).json({
+                    code: 400,
                     message: "id is required",
                 });
             }
 
-            const foundOrganization = await Organization.findById(id);
-            if (!foundOrganization) {
+            const foundUniversity = await University.findById(id);
+            if (!foundUniversity) {
                 return res.status(404).json({
                     code: 404,
-                    message: "Organization not found",
+                    message: "University not found",
                 });
             }
             res.json({
                 code: 200,
-                message: "Organization retrieved successfully",
-                data: foundOrganization
+                message: "University retrieved successfully",
+                data: foundUniversity
             });
         } catch (error) {
             res.status(500).json({
@@ -91,12 +94,12 @@ module.exports = {
         }
     },
 
-    updateOrganization: async (req, res) => {
+    updateUniversity: async (req, res) => {
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 return res.status(400).json({
-                    status: 400,
+                    code: 400,
                     message: "Validation error",
                     errors: errors.array()
                 });
@@ -105,32 +108,33 @@ module.exports = {
             const id = req.params.id; //To seprate the id from the parameter
             if (!id) {
                 return res.status(400).json({
+                    code: 400,
                     message: "id is required",
                 });
             }
 
             const updateFields = {};
-            const fieldsToUpdate = ['name', 'description', 'location'];
+            const fieldsToUpdate = ['name', 'establishedYear', 'location', 'website','contactEmail'];
             fieldsToUpdate.forEach(field => {
                 if (req.body[field]) {
                     updateFields[field] = req.body[field];
                 }
             });
 
-            const updatedOrganization = await Organization.findByIdAndUpdate(id, updateFields, { new: true });
+            const updatedUniversity = await University.findByIdAndUpdate(id, updateFields, { new: true });
 
-            if (!updatedOrganization) {
+            if (!updatedUniversity) {
                 return res.status(404).json({
                     code: 404,
-                    message: "Organization not found",
+                    message: "University not found",
                 });
             }
 
-            // Return the updated Organization
+            // Return the updated University
             res.status(200).json({
                 code: 200,
-                message: "Organization updated successfully",
-                data: updatedOrganization,
+                message: "University updated successfully",
+                data: updatedUniversity,
             });
         } catch (error) {
             console.log(error);
@@ -142,21 +146,21 @@ module.exports = {
         }
     },
 
-    deleteOrganization: async (req, res) => {
+    deleteUniversity: async (req, res) => {
         try {
             const id = req.params.id;
 
-            const deletedOrganization = await Organization.findByIdAndDelete(id);
-            if (!deletedOrganization) {
+            const deletedUniversity = await University.findByIdAndDelete(id);
+            if (!deletedUniversity) {
                 return res.status(404).json({
                     code: 404,
-                    message: "Organization not found",
+                    message: "University not found",
                 });
             }
 
             res.status(200).json({
                 code: 200,
-                message: "Organization deleted successfully"
+                message: "University deleted successfully"
             });
         } catch (error) {
             console.error(error);

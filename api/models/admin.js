@@ -16,9 +16,10 @@ const adminSchema = new Schema(
             type: String,
             required: true
         },
-        organizationId: {
+        departmentId: {
             type: Schema.Types.ObjectId,
-            ref: 'Organization'
+            ref: 'Department',
+            required: true
         },
     },
     { timestamps: true }
