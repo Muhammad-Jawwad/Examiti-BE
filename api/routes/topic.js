@@ -1,18 +1,20 @@
 const { getAllTopics, createTopic, getTopicById, deleteTopic, updateTopic } = require("../controllers/topic");
 const authenticateToken = require("../middlewares/isAuth");
+const { validateTopic } = require("../middlewares/topicValidation");
 
 const router = require("express").Router();
 
 
-router.get("/", 
+router.get("/",
     authenticateToken,
     getAllTopics
 );
 router.post("/new",
     authenticateToken,
+    validateTopic,
     createTopic
 );
-router.get("/:id", 
+router.get("/:id",
     authenticateToken,
     getTopicById
 );
@@ -20,7 +22,7 @@ router.patch("/update/:id",
     authenticateToken,
     updateTopic
 );
-router.delete("/delete/:id", 
+router.delete("/delete/:id",
     authenticateToken,
     deleteTopic
 );

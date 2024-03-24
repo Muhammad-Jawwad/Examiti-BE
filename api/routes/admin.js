@@ -1,5 +1,5 @@
 const { getAllAdmins, createAdmin, getAdminById, deleteAdmin, updateAdmin, login, getAdminByDepartmentId } = require("../controllers/admin");
-const { validateLogin } = require("../middlewares/adminValidation");
+const { validateLogin } = require("../middlewares/adminValidation");    
 const authenticateToken = require("../middlewares/isAuth");
 
 const router = require("express").Router();

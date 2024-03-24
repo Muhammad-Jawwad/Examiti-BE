@@ -114,7 +114,7 @@ module.exports = {
             }
 
             const updateFields = {};
-            const fieldsToUpdate = ['name', 'establishedYear', 'location', 'website','contactEmail'];
+            const fieldsToUpdate = ['name', 'establishedYear', 'location', 'website', 'contactEmail'];
             fieldsToUpdate.forEach(field => {
                 if (req.body[field]) {
                     updateFields[field] = req.body[field];

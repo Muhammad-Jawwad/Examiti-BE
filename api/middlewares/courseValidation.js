@@ -1,6 +1,6 @@
 const { body } = require("express-validator");
 module.exports = {
-    // Validation middleware for login
+    // Validation middleware for course
     validateCreateCourse: [
         body('name')
             .notEmpty().withMessage("name is required")
@@ -11,11 +11,16 @@ module.exports = {
         body('description')
             .notEmpty().withMessage("description is required")
             .isString().withMessage("description must be a string"),
+        body('departmentId')
+            .notEmpty().withMessage("departmentId is required")
+            .custom(value => {
+                if (!Types.ObjectId.isValid(value)) {
+                    throw new Error('Invalid departmentId');
+                }
+                return true;
+            }),
         body('totalCredits')
             .notEmpty().withMessage("totalCredits is required")
             .isInt().withMessage("totalCredits must be a Integer"),
     ],
-
-
-
 };

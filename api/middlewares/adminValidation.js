@@ -12,6 +12,6 @@ module.exports = {
             .isLength({ min: 6 }).withMessage("password must be at least 6 characters long"),
     ],
 
-    
+
 
 };

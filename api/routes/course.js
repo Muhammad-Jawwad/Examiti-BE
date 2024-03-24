@@ -6,7 +6,7 @@ const router = require("express").Router();
 
 //#region : COURSES CRUD
 
-router.get("/", 
+router.get("/",
     authenticateToken,
     getAllCourses
 );
@@ -20,7 +20,7 @@ router.patch("/update/:id",
     authenticateToken,
     updateCourse
 );
-router.delete("/delete/:id", 
+router.delete("/delete/:id",
     authenticateToken,
     deleteCourse
 );
