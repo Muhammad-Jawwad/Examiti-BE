@@ -1,0 +1,395 @@
+{
+	"info": {
+		"_postman_id": "cb4aadbe-9062-4d57-bc92-c0224a0e5f36",
+		"name": "EXAMITI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30227877"
+	},
+	"item": [
+		{
+			"name": "ADMIN",
+			"item": [
+				{
+					"name": "GET ALL ADMIN",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local8080}}/admin/",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"admin",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE NEW ADMIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Muhammad Jawwad\",\r\n    \"email\": \"muhammadjawwad417@gmail.com\",\r\n    \"password\": \"bcit-076\",\r\n    \"departmentId\": \"65ff87226d1b6a910a770c0e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local8080}}/admin/new",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"admin",
+								"new"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TEACHER",
+			"item": [
+				{
+					"name": "CREATE NEW TEACHER",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZmY4NzU3NmQxYjZhOTEwYTc3MGMxMiIsImVtYWlsIjoibXVoYW1tYWRqYXd3YWQ0MTdAZ21haWwuY29tIiwiZGVwYXJ0bWVudElkIjoiNjVmZjg3MjI2ZDFiNmE5MTBhNzcwYzBlIiwiZXhwaXJhdGlvbiI6MTcxMTI0ODgxMzQ5MCwiaWF0IjoxNzExMjQ1MjEzLCJleHAiOjE3MTEyNDg4MTN9.KnEemfJqV-EDLBqJ3EuZQHM-lt5NBmGIXbDHhf-kvzI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Prof. Dr. Najeed Ahmed Khan\",\r\n    \"email\": \"najeed@neduet.edu.pk\",\r\n    \"password\": \"123456\",\r\n    \"departmentId\": \"65ff87226d1b6a910a770c0e\",\r\n    \"designation\": \"Professor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local8080}}/teacher/new",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"teacher",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL TEACHERS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZmY4NzU3NmQxYjZhOTEwYTc3MGMxMiIsImVtYWlsIjoibXVoYW1tYWRqYXd3YWQ0MTdAZ21haWwuY29tIiwiZGVwYXJ0bWVudElkIjoiNjVmZjg3MjI2ZDFiNmE5MTBhNzcwYzBlIiwiZXhwaXJhdGlvbiI6MTcxMTI0ODgxMzQ5MCwiaWF0IjoxNzExMjQ1MjEzLCJleHAiOjE3MTEyNDg4MTN9.KnEemfJqV-EDLBqJ3EuZQHM-lt5NBmGIXbDHhf-kvzI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local8080}}/teacher/",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"teacher",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UNIVERSITY",
+			"item": [
+				{
+					"name": "CREATE NEW UNIVERSITY",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"NED University of Engineering & Technology\",\r\n    \"location\": \"Service Rd, NED University Of Engineering & Technology, Karachi, Karachi City, Sindh\",\r\n    \"establishedYear\": 1921,\r\n    \"website\": \"https://www.neduet.edu.pk/\",\r\n    \"contactEmail\": \"registrar@neduet.edu.pk\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local8080}}/university/new",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"university",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL UNIVERSITIES",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local8080}}/university/",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"university",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET UNIVERSITY BY ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local8080}}/university/65ff85936d1b6a910a770c08",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"university",
+								"65ff85936d1b6a910a770c08"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE UNIVERSITY",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"NED University of Engineering & Technology\"\r\n    // \"location\": \"Service Rd, NED University Of Engineering & Technology, Karachi, Karachi City, Sindh\",\r\n    // \"establishedYear\": 1921,\r\n    // \"website\": \"https://www.neduet.edu.pk/\",\r\n    // \"contactEmail\": \"registrar@neduet.edu.pk\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local8080}}/university/update/65ff85936d1b6a910a770c08",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"university",
+								"update",
+								"65ff85936d1b6a910a770c08"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE UNIVERSITY",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{local8080}}/university/delete/65ff844b6d1b6a910a770bfe",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"university",
+								"delete",
+								"65ff844b6d1b6a910a770bfe"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DEPARTMENT",
+			"item": [
+				{
+					"name": "CREATE NEW DEPARTMENT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Department of Computer Science and Information Technology\",\r\n    \"universityId\": \"65ff85936d1b6a910a770c08\",\r\n    \"headOfDepartment\": \"Prof. Dr. Muhammad Mubashir Khan\",\r\n    \"contactEmail\": \"mmkhan@neduet.edu.pk\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local8080}}/department/new",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"department",
+								"new"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "ADMIN LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"muhammadjawwad417@gmail.com\",\r\n    \"password\": \"bcit-076\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local8080}}/admin/login",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"admin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "COURSE",
+			"item": [
+				{
+					"name": "CREATE NEW COURSE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZmY4NzU3NmQxYjZhOTEwYTc3MGMxMiIsImVtYWlsIjoibXVoYW1tYWRqYXd3YWQ0MTdAZ21haWwuY29tIiwiZGVwYXJ0bWVudElkIjoiNjVmZjg3MjI2ZDFiNmE5MTBhNzcwYzBlIiwiZXhwaXJhdGlvbiI6MTcxMTI5NTI0MDAxNSwiaWF0IjoxNzExMjkxNjQwLCJleHAiOjE3MTEyOTUyNDB9.2ZvAFlWxpjvFBThLp35T4ICZPHQBDHEc1qj_8ImJDmI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Programming Fundamentals\",\r\n    \"courseCode\": \"CT-175 \",\r\n    \"description\": \"First Year (Fall Semester)\",\r\n    \"totalCredits\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/course/new",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"course",
+								"new"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TOPIC",
+			"item": [
+				{
+					"name": "CREATE NEW TOPIC",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZmY4NzU3NmQxYjZhOTEwYTc3MGMxMiIsImVtYWlsIjoibXVoYW1tYWRqYXd3YWQ0MTdAZ21haWwuY29tIiwiZGVwYXJ0bWVudElkIjoiNjVmZjg3MjI2ZDFiNmE5MTBhNzcwYzBlIiwiZXhwaXJhdGlvbiI6MTcxMTI5NTI0MDAxNSwiaWF0IjoxNzExMjkxNjQwLCJleHAiOjE3MTEyOTUyNDB9.2ZvAFlWxpjvFBThLp35T4ICZPHQBDHEc1qj_8ImJDmI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Loops\",\r\n    \"description\": \"In computer programming, loops are used to repeat a block of code\",\r\n    \"courseId\": \"65ff89c5947e4dafc2a4e1a1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/topic/new",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"topic",
+								"new"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

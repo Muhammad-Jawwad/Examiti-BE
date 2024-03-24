@@ -14,7 +14,6 @@ module.exports = {
             .notEmpty().withMessage("description is required")
             .isString().withMessage("description must be a string"),
         body('departmentId')
-            .notEmpty().withMessage("departmentId is required")
             .custom(value => {
                 if (!Types.ObjectId.isValid(value)) {
                     throw new Error('Invalid departmentId');

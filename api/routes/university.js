@@ -1,12 +1,12 @@
 const { getUniversity, createUniversity, getUniversityById, updateUniversity, deleteUniversity } = require("../controllers/university");
-const { validateTeacher } = require("../middlewares/teacherValidation");
+const { validateUniversity } = require("../middlewares/universityValidation");
 
 const router = require("express").Router();
 
 
 router.get("/", getUniversity);
 router.post("/new",
-    validateTeacher,
+    validateUniversity,
     createUniversity,
 );
 router.get("/:id", getUniversityById);
