@@ -1,5 +1,5 @@
 const { getUniversity, createUniversity, getUniversityById, updateUniversity, deleteUniversity } = require("../controllers/university");
-const { validateUniversity } = require("../middlewares/universityValidation");
+const { validateUniversity, validateUpdateUniversity } = require("../middlewares/universityValidation");
 
 const router = require("express").Router();
 
@@ -9,8 +9,10 @@ router.post("/new",
     validateUniversity,
     createUniversity,
 );
+
 router.get("/:id", getUniversityById);
 router.patch("/update/:id",
+    validateUpdateUniversity,
     updateUniversity
 );
 router.delete("/delete/:id", deleteUniversity);

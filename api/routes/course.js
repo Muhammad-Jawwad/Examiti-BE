@@ -1,5 +1,5 @@
 const { getAllCourses, getCourseById, updateCourse, deleteCourse, createCourse, coursesByDepartmentId } = require("../controllers/course");
-const { validateCreateCourse } = require("../middlewares/courseValidation");
+const { validateCreateCourse, validateUpdateCourse } = require("../middlewares/courseValidation");
 const authenticateToken = require("../middlewares/isAuth");
 
 const router = require("express").Router();
@@ -16,8 +16,10 @@ router.post("/new",
     createCourse
 );
 router.get("/:id", getCourseById);
+
 router.patch("/update/:id",
     authenticateToken,
+    validateUpdateCourse,
     updateCourse
 );
 router.delete("/delete/:id",

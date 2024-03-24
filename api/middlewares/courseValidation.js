@@ -24,4 +24,27 @@ module.exports = {
             .notEmpty().withMessage("totalCredits is required")
             .isInt().withMessage("totalCredits must be a Integer"),
     ],
+
+    // Validation middleware for update course
+    validateUpdateCourse: [
+        body('name')
+            .optional()
+            .isString().withMessage("name must be a string"),
+        body('courseCode')
+            .optional()
+            .isString().withMessage("courseCode must be a string"),
+        body('description')
+            .optional()
+            .isString().withMessage("description must be a string"),
+        // body('departmentId')
+        //     .custom(value => {
+        //         if (!Types.ObjectId.isValid(value)) {
+        //             throw new Error('Invalid departmentId');
+        //         }
+        //         return true;
+        //     }),
+        body('totalCredits')
+            .optional()
+            .isInt().withMessage("totalCredits must be a Integer"),
+    ],
 };

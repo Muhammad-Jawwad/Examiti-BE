@@ -39,4 +39,45 @@ module.exports = {
         body('isApproved')
             .isBoolean().withMessage("isApproved must be a string"),
     ],
+
+    // Validation middleware for update question
+    validateUpdateQuestion: [
+        body('question')
+            .optional()
+            .isString().withMessage("question must be a string"),
+        body('marks')
+            .optional()
+            .isInt().withMessage("marks must be a Int"),
+        body('category')
+            .optional()
+            .isString().withMessage("category must be a string"),
+        body('type')
+            .optional()
+            .isString().withMessage("type must be a string"),
+        body('scope')
+            .optional()
+            .isString().withMessage("scope must be a string"),
+        body('subjectTeacherId')
+            .optional()
+            .custom(value => {
+                if (!Types.ObjectId.isValid(value)) {
+                    throw new Error('Invalid subjectTeacherId');
+                }
+                return true;
+            }),
+        body('topicId')
+            .optional()
+            .custom(value => {
+                if (!Types.ObjectId.isValid(value)) {
+                    throw new Error('Invalid topicId');
+                }
+                return true;
+            }),
+        body('difficultyLevel')
+            .optional()
+            .isInt().withMessage("difficultyLevel must be a Int"),
+        body('isApproved')
+            .optional()
+            .isBoolean().withMessage("isApproved must be a string"),
+    ],
 };

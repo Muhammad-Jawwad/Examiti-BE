@@ -1,5 +1,5 @@
 const { createDepartment, getDepartmentById, getAllDepartments, updateDepartment, deleteDepartment } = require("../controllers/department");
-const { validateDepartment } = require("../middlewares/departmentValidation");
+const { validateUpdateDepartment: validateDepartment, validateUpdateDepartment } = require("../middlewares/departmentValidation");
 
 const router = require("express").Router();
 
@@ -11,6 +11,7 @@ router.post("/new",
 );
 router.get("/:id", getDepartmentById);
 router.patch("/update/:id",
+    validateUpdateDepartment,
     updateDepartment,
 
 );

@@ -24,4 +24,28 @@ module.exports = {
             .isInt().withMessage("teachingSemester must be a Integer"),
 
     ],
+
+    // Validation middleware for update courseTeacher
+    validateUpdateCourseTeacher: [
+        body('courseId')
+            .optional()
+            .custom(value => {
+                if (!Types.ObjectId.isValid(value)) {
+                    throw new Error('Invalid courseId');
+                }
+                return true;
+            }),
+        body('teacherId')
+            .optional()
+            .custom(value => {
+                if (!Types.ObjectId.isValid(value)) {
+                    throw new Error('Invalid courseId');
+                }
+                return true;
+            }),
+        body('teachingSemester')
+            .optional()
+            .isInt().withMessage("teachingSemester must be a Integer"),
+
+    ]
 };

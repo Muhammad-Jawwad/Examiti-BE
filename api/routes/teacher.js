@@ -1,7 +1,7 @@
 const { getAllTeachers, getTeacherById, updateTeacher, deleteTeacher, createTeacher, login, getTeacherByDepartmentId } = require("../controllers/teacher");
 const { validateCourseTeacher } = require("../middlewares/courseTeacherValidation");
 const authenticateToken = require("../middlewares/isAuth");
-const { validateTeacher, validateTeacherLogin } = require("../middlewares/teacherValidation");
+const { validateTeacher, validateTeacherLogin, validateUpdateTeacher } = require("../middlewares/teacherValidation");
 
 const router = require("express").Router();
 
@@ -31,6 +31,7 @@ router.get("/:id",
 );
 router.patch("/update/:id",
     authenticateToken,
+    validateUpdateTeacher,
     updateTeacher
 );
 router.delete("/delete/:id",

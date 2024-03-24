@@ -20,4 +20,24 @@ module.exports = {
             .isString().withMessage("contactEmail must be a string")
             .isEmail().normalizeEmail({ gmail_remove_dots: false }).withMessage("Invalid contactEmail"),
     ],
+
+    // Validation middleware for update university
+    validateUpdateUniversity: [
+        body('name')
+            .optional()
+            .isString().withMessage("name must be a string"),
+        body('location')
+            .optional()
+            .isString().withMessage("location must be a string"),
+        body('establishedYear')
+            .optional()
+            .isInt().withMessage("establishedYear must be a Int"),
+        body('website')
+            .optional()
+            .isString().withMessage("website must be a string"),
+        body('contactEmail')
+            .optional()
+            .isString().withMessage("contactEmail must be a string")
+            .isEmail().normalizeEmail({ gmail_remove_dots: false }).withMessage("Invalid contactEmail"),
+    ],
 };

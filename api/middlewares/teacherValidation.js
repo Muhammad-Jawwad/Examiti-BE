@@ -38,4 +38,29 @@ module.exports = {
             .notEmpty().withMessage("designation is required")
             .isString().withMessage("designation must be a string"),
     ],
+    // Validation middleware for update teacher
+    validateUpdateTeacher: [
+        body('name')
+            .optional()
+            .isString().withMessage("name must be a string"),
+        body('email')
+            .optional()
+            .isString().withMessage("email must be a string")
+            .isEmail().normalizeEmail({ gmail_remove_dots: false }).withMessage("Invalid email"),
+        body('password')
+            .optional()
+            .isString().withMessage("password must be a string")
+            .isLength({ min: 6 }).withMessage("password must be at least 6 characters long"),
+        // body('departmentId')
+        //     .notEmpty().withMessage("departmentId is required")
+        //     .custom(value => {
+        //         if (!Types.ObjectId.isValid(value)) {
+        //             throw new Error('Invalid departmentId');
+        //         }
+        //         return true;
+        //     }),
+        body('designation')
+            .optional()
+            .isString().withMessage("designation must be a string"),
+    ],
 };

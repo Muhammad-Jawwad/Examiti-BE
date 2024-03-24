@@ -1,5 +1,5 @@
 const { getAllAdmins, createAdmin, getAdminById, deleteAdmin, updateAdmin, login, getAdminByDepartmentId } = require("../controllers/admin");
-const { validateLogin } = require("../middlewares/adminValidation");    
+const { validateLogin, validateAdmin, validateUpdateAdmin } = require("../middlewares/adminValidation");
 const authenticateToken = require("../middlewares/isAuth");
 
 const router = require("express").Router();
@@ -17,10 +17,13 @@ router.post("/login",
 
 router.get("/", getAllAdmins);
 router.post("/new",
+    validateAdmin,
     createAdmin
 );
 router.get("/:id", getAdminById);
+
 router.patch("/update/:id",
+    validateUpdateAdmin,
     updateAdmin
 );
 router.delete("/delete/:id", deleteAdmin);

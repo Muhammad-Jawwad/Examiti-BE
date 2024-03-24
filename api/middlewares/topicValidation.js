@@ -19,4 +19,22 @@ module.exports = {
                 return true;
             }),
     ],
+
+    // Validation middleware for update topic
+    validateUpdateTopic: [
+        body('name')
+            .optional()
+            .isString().withMessage("name must be a string"),
+        body('description')
+            .optional()
+            .isString().withMessage("description must be a string"),
+        body('courseId')
+            .optional()
+            .custom(value => {
+                if (!Types.ObjectId.isValid(value)) {
+                    throw new Error('Invalid courseId');
+                }
+                return true;
+            }),
+    ],
 };

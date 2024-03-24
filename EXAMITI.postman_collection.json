@@ -42,13 +42,44 @@
 							}
 						},
 						"url": {
-							"raw": "{{local8080}}/admin/new",
+							"raw": "localhost:8080/admin/update/65ff87576d1b6a910a770c12",
 							"host": [
-								"{{local8080}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"admin",
-								"new"
+								"update",
+								"65ff87576d1b6a910a770c12"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE ADMIN",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Muhammad Jawwad Rizzvi\",\r\n    \"email\": \"muhammadjawwad417@gmail.com\",\r\n    \"password\": \"bcit-076\",\r\n    \"departmentId\": \"65ff87226d1b6a910a770c0e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/admin/update/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"update",
+								""
 							]
 						}
 					},
@@ -123,6 +154,14 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "UPDATE TEACHER",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
 		},
@@ -136,7 +175,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"NED University of Engineering & Technology\",\r\n    \"location\": \"Service Rd, NED University Of Engineering & Technology, Karachi, Karachi City, Sindh\",\r\n    \"establishedYear\": 1921,\r\n    \"website\": \"https://www.neduet.edu.pk/\",\r\n    \"contactEmail\": \"registrar@neduet.edu.pk\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Sir Syed University of Engineering & Technology\",\r\n    \"location\": \"ST-16 Main University Rd, Block 5 Gulshan-e-Iqbal, Karachi, Karachi City, Sindh\",\r\n    \"establishedYear\": 1993,\r\n    \"website\": \"www.ssuet.edu.pk\",\r\n    \"contactEmail\": \"registrar@ssuet.edu.pk\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -144,10 +183,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{local8080}}/university/new",
+							"raw": "localhost:8080/university/new",
 							"host": [
-								"{{local8080}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"university",
 								"new"
@@ -270,6 +310,34 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "UPDATE DEPARTMENT",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Department of Computer Science and Information Technology\",\r\n    \"universityId\": \"65ff85936d1b6a910a770c08\",\r\n    \"headOfDepartment\": \"Prof. Dr. Muhammad Mubashir Khan\",\r\n    \"contactEmail\": \"mmkhan@neduet.edu.pk\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local8080}}/department/update/66006da87a828d667b00bbc9",
+							"host": [
+								"{{local8080}}"
+							],
+							"path": [
+								"department",
+								"update",
+								"66006da87a828d667b00bbc9"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -283,7 +351,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"muhammadjawwad417@gmail.com\",\r\n    \"password\": \"bcit-076\"\r\n}",
+							"raw": " {\r\n        \"_id\": \"65ff87576d1b6a910a770c12\",\r\n        \"name\": \"Muhammad Jawwad Rizzvi\",\r\n        \"email\": \"muhammadjawwad417@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -291,15 +359,24 @@
 							}
 						},
 						"url": {
-							"raw": "{{local8080}}/admin/login",
+							"raw": "localhost:8080/admin/login",
 							"host": [
-								"{{local8080}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"admin",
 								"login"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE ADMIN",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
@@ -345,6 +422,14 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "UPDATE COURSE",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
 		},
@@ -388,8 +473,22 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "UPDATE TOPIC",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "local8080",
+			"value": "localhost:8080"
 		}
 	]
 }

@@ -1,6 +1,6 @@
 const { getAllTopics, createTopic, getTopicById, deleteTopic, updateTopic } = require("../controllers/topic");
 const authenticateToken = require("../middlewares/isAuth");
-const { validateTopic } = require("../middlewares/topicValidation");
+const { validateTopic, validateUpdateTopic } = require("../middlewares/topicValidation");
 
 const router = require("express").Router();
 
@@ -20,6 +20,7 @@ router.get("/:id",
 );
 router.patch("/update/:id",
     authenticateToken,
+    validateUpdateTopic,
     updateTopic
 );
 router.delete("/delete/:id",
