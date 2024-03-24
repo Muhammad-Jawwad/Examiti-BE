@@ -58,6 +58,7 @@ module.exports = {
                 email: teacherDetails.email,
             };
             res.status(200).json({
+                code: 200,
                 message: "Login successful",
                 data: TeacherData,
                 token: token,

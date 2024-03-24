@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 const teacherSchema = new Schema(
     {
         name: String,
-        teacherCode: String,
         email: {
             type: String,
             required: true
