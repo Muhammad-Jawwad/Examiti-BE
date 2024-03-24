@@ -13,13 +13,13 @@ module.exports = {
         body('description')
             .notEmpty().withMessage("description is required")
             .isString().withMessage("description must be a string"),
-        body('departmentId')
-            .custom(value => {
-                if (!Types.ObjectId.isValid(value)) {
-                    throw new Error('Invalid departmentId');
-                }
-                return true;
-            }),
+        // body('departmentId')
+        //     .custom(value => {
+        //         if (!Types.ObjectId.isValid(value)) {
+        //             throw new Error('Invalid departmentId');
+        //         }
+        //         return true;
+        //     }),
         body('totalCredits')
             .notEmpty().withMessage("totalCredits is required")
             .isInt().withMessage("totalCredits must be a Integer"),

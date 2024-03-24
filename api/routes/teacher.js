@@ -1,14 +1,14 @@
 const { getAllTeachers, getTeacherById, updateTeacher, deleteTeacher, createTeacher, login, getTeacherByDepartmentId } = require("../controllers/teacher");
 const { validateCourseTeacher } = require("../middlewares/courseTeacherValidation");
 const authenticateToken = require("../middlewares/isAuth");
-const { validateTeacher } = require("../middlewares/teacherValidation");
+const { validateTeacher, validateTeacherLogin } = require("../middlewares/teacherValidation");
 
 const router = require("express").Router();
 
 //#region : AUTH
 
 router.post("/login",
-    validateTeacher,
+    validateTeacherLogin,
     login
 );
 
