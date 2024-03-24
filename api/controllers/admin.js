@@ -45,6 +45,7 @@ module.exports = {
                 {
                     id: adminDetails._id.toString(),
                     email: adminDetails.email,
+                    departmentId: adminDetails.departmentId,
                     expiration: Date.now() + 3600000,
                 },
                 process.env.JWT_SecretKey,
@@ -53,12 +54,11 @@ module.exports = {
             const adminData = {
                 _id: adminDetails._id,
                 name: adminDetails.name,
-                email: adminDetails.email,
-                departmentId: adminDetails.departmentId
+                email: adminDetails.email
             };
             res.status(200).json({
                 message: "Login successful",
-                userDetails: adminData,
+                data: adminData,
                 token: token,
             });
         } catch (error) {
@@ -322,6 +322,5 @@ module.exports = {
     },
 
     //#endregion
-
 
 }

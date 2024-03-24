@@ -1,16 +1,19 @@
 const { getAllAdmins, createAdmin, getAdminById, deleteAdmin, updateAdmin, login, getAdminByDepartmentId } = require("../controllers/admin");
+const { validateLogin } = require("../middlewares/adminValidation");
+const authenticateToken = require("../middlewares/isAuth");
 
 const router = require("express").Router();
 
 //#region : AUTH
 
 router.post("/login",
+    validateLogin,
     login
 );
 
 //#endregion
 
-//#region : TEACHER CRUD
+//#region : ADMIN CRUD
 
 router.get("/", getAllAdmins);
 router.post("/new",
@@ -26,7 +29,10 @@ router.delete("/delete/:id", deleteAdmin);
 
 //#region : OTHER APIs
 
-router.get("/:departmentId", getAdminByDepartmentId);
+router.get("/:departmentId",
+    authenticateToken,
+    getAdminByDepartmentId
+);
 
 //#endregion
 

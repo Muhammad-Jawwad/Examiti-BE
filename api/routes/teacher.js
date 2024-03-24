@@ -1,4 +1,5 @@
 const { getAllTeachers, getTeacherById, updateTeacher, deleteTeacher, createTeacher, login, getTeacherByDepartmentId } = require("../controllers/teacher");
+const authenticateToken = require("../middlewares/isAuth");
 
 const router = require("express").Router();
 
@@ -10,23 +11,37 @@ router.post("/login",
 
 //#endregion
 
-//#region : ADMIN CRUD
+//#region : TEACHER CRUD
 
-router.get("/", getAllTeachers);
+router.get("/", 
+    authenticateToken,
+    getAllTeachers
+);
 router.post("/new",
+    authenticateToken,
     createTeacher
 );
-router.get("/:id", getTeacherById);
+router.get("/:id", 
+    authenticateToken,
+    getTeacherById
+);
 router.patch("/update/:id",
+    authenticateToken,
     updateTeacher
 );
-router.delete("/delete/:id", deleteTeacher);
+router.delete("/delete/:id", 
+    authenticateToken,
+    deleteTeacher
+);
 
 //#endregion
 
 //#region : OTHER APIs
 
-router.get("/:departmentId", getTeacherByDepartmentId);
+router.get("/byDepartmentId", 
+    authenticateToken,
+    getTeacherByDepartmentId
+);
 
 //#endregion
 

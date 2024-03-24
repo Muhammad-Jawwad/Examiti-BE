@@ -17,7 +17,8 @@ module.exports = {
                 });
             }
 
-            const departmentId = req.body.departmentId;
+            const departmentId = req.departmentId;
+            console.log("departmentId", departmentId);
             const isExistDepartment = await Department.findById(departmentId);
             if (!isExistDepartment) {
                 return res.status(404).json({
@@ -30,7 +31,7 @@ module.exports = {
             const newCourse = new Course({
                 name: req.body.name,
                 courseCode: req.body.courseCode,
-                departmentIdId: req.body.departmentIdId,
+                departmentId: departmentId,
                 description: req.body.description,
                 totalCredits: req.body.totalCredits,
             });
@@ -125,7 +126,7 @@ module.exports = {
                 });
             }
 
-            const departmentId = req.body.departmentId;
+            const departmentId = req.departmentId;
             if (departmentId) {
                 const isExistDepartment = await Department.findById(departmentId);
                 if (!isExistDepartment) {
@@ -136,13 +137,17 @@ module.exports = {
                 }
             }
 
-            const updateFields = {};
-            const fieldsToUpdate = ['name', 'courseCode', 'description', 'departmentId','totalCredits'];
+            const updateFields = {
+                departmentId
+            };
+            const fieldsToUpdate = ['name', 'courseCode', 'description','totalCredits'];
             fieldsToUpdate.forEach(field => {
                 if (req.body[field]) {
                     updateFields[field] = req.body[field];
                 }
             });
+
+            console.log("updateFields", updateFields)
 
             const updatedCourse = await Course.findByIdAndUpdate(id, updateFields, { new: true });
 
@@ -201,7 +206,8 @@ module.exports = {
 
     coursesByDepartmentId: async (req, res) => {
         try {
-            const id = req.params.departmentId; //To seprate the id from the parameter
+            const id = req.departmentId; 
+            console.log("req.departmentId", req.departmentId)
             if (!id) {
                 return res.status(400).json({
                     code: 400,

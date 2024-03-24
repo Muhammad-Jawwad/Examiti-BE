@@ -46,6 +46,7 @@ module.exports = {
                 {
                     id: teacherDetails._id.toString(),
                     email: teacherDetails.email,
+                    departmentId: teacherDetails.departmentId,
                     expiration: Date.now() + 3600000,
                 },
                 process.env.JWT_SecretKey,
@@ -55,11 +56,10 @@ module.exports = {
                 _id: teacherDetails._id,
                 name: teacherDetails.name,
                 email: teacherDetails.email,
-                departmentId: teacherDetails.departmentId
             };
             res.status(200).json({
                 message: "Login successful",
-                userDetails: TeacherData,
+                data: TeacherData,
                 token: token,
             });
         } catch (error) {
@@ -96,7 +96,8 @@ module.exports = {
                 });
             }
 
-            const departmentId = req.body.departmentId;
+            const departmentId = req.departmentId;
+            console.log("departmentId", departmentId);
             const isExistDepartment = await Department.findById(departmentId);
             if (!isExistDepartment) {
                 return res.status(404).json({
@@ -112,7 +113,7 @@ module.exports = {
             const newTeacher = new Teacher({
                 name: req.body.name,
                 email: req.body.email,
-                departmentId: req.body.departmentId,
+                departmentId: departmentId,
                 teacherCode: req.body.teacherCode,
                 designation: req.body.designation,
                 password: hashedPassword,
@@ -209,7 +210,7 @@ module.exports = {
                 });
             }
 
-            const departmentId = req.body.departmentId;
+            const departmentId = req.departmentId;
             if (departmentId) {
                 const isExistDepartment = await Department.findById(departmentId);
                 if (!isExistDepartment) {
@@ -220,8 +221,10 @@ module.exports = {
                 }
             }
 
-            const updateFields = {};
-            const fieldsToUpdate = ['name', 'teacherCode','designation','departmentId'];
+            const updateFields = {
+                departmentId
+            };
+            const fieldsToUpdate = ['name', 'teacherCode','designation'];
             fieldsToUpdate.forEach(field => {
                 if (req.body[field]) {
                     updateFields[field] = req.body[field];
@@ -285,7 +288,8 @@ module.exports = {
 
     getTeacherByDepartmentId: async (req, res) => {
         try {
-            const id = req.params.departmentId; //To seprate the id from the parameter
+            const id = req.departmentId; 
+            console.log("req.departmentId", req.departmentId)
             if (!id) {
                 return res.status(400).json({
                     code: 400,

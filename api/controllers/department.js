@@ -192,36 +192,4 @@ module.exports = {
         }
     },
 
-    getClassesByOrganization: async (req, res) => {
-        try {
-            const organizationId = req.params.id;
-            if (!organizationId) {
-                return res.status(400).json({
-                    code: 400,
-                    message: "organizationId is required in params",
-                });
-            }
-
-            const classesByOrganizationList = await Class.find({ organizationId }).sort({ _id: -1 });
-            if (classesByOrganizationList.length === 0) {
-                return res.status(404).json({
-                    code: 404,
-                    message: "No Class by Organization found"
-                });
-            }
-            res.json({
-                code: 200,
-                message: "Class by Organization retrieved successfully",
-                data: classesByOrganizationList
-            });
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({
-                code: 500,
-                error: error.name,
-                message: error.message,
-            });
-        }
-    },
-
 }
