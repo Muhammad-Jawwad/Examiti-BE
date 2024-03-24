@@ -1,4 +1,6 @@
 const { body } = require("express-validator");
+const { Types } = require("mongoose");
+
 module.exports = {
     // Validation middleware for courseTeacher
     validateCourseTeacher: [
