@@ -483,6 +483,110 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "SUPERADMIN",
+			"item": [
+				{
+					"name": "CREATE SUPER ADMIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Abdul Rafay Chohan\",\r\n    \"email\": \"rafaychohan@gmail.com\",\r\n    \"password\":\"rafay123\",\r\n    \"universityId\" :\"universityId\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/superAdmin/new",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"superAdmin",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UPDATE SUPERADMIN",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GET SUPER ADMIN",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/superAdmin/get",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"superAdmin",
+								"get"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE SUPERADMIN",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "GET SUPERADMIN BY ID",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN SUPER ADMIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"rafaychohan@gmail.com\",\r\n    \"password\":\"rafay123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/superAdmin/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"superAdmin",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"variable": [

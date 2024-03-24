@@ -2,12 +2,12 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const supperAdminSchema = new Schema(
+const superAdminSchema = new Schema(
     {
         name: {
             type: String,
             required: true
-        },
+        },  
         email: {
             type: String,
             required: true
@@ -26,4 +26,4 @@ const supperAdminSchema = new Schema(
 );
 
 
-module.exports = mongoose.model("SupperAdmin", supperAdminSchema);
+module.exports = mongoose.model("SuperAdmin", superAdminSchema);
